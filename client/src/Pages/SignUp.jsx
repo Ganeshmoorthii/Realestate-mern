@@ -1,12 +1,13 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import OAuth from "../components/OAuth";
 
 export default function SignUp() {
   const [formData, setFormData] = React.useState({});
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -16,7 +17,7 @@ export default function SignUp() {
     e.preventDefault();
     try {
       setLoading(true);
-      setError(null); 
+      setError(null);
 
       const res = await fetch("/api/auth/signup", {
         method: "POST",
@@ -80,6 +81,7 @@ export default function SignUp() {
         >
           {loading ? "Loading..." : "Sign Up"}
         </button>
+        <OAuth />
       </form>
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
